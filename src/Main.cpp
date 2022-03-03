@@ -7,6 +7,7 @@
 #include "AppReceiptSender.h"
 #include "Product.h"
 #include "ProductManager.h"
+#include "AppReceiptException.h"
 
 using namespace std;
 
@@ -41,7 +42,7 @@ int main() {
         productManager.purchase(appReceiptSender); // Error if name is empty
         //productManager.exampleBadCast(); // Example of error bad cast
         //productManager.exampleBadException(); // Example of bad exception
-        productManager.exampleLengthError(); // Example of length error
+        //productManager.exampleLengthError(); // Example of length error
 
     } catch(const bad_cast& bc) {
         cerr << "bad_cast caught: " << bc.what() << '\n' << std::endl;
@@ -49,6 +50,8 @@ int main() {
         cerr << "bad_exception caught: " << be.what() << '\n' << std::endl;
     } catch (const length_error& le) {
         cerr << "length_error caught: " << le.what() << '\n' << std::endl;
+    } catch (AppReceiptException& are) {
+        cerr << "AppReceiptException caught: " << are.what() << '\n' << std::endl;
     } catch (exception& ex) {
         cerr << ex.what() << '\n' << std::endl;
     }

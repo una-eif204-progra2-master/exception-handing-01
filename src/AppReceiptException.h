@@ -8,6 +8,7 @@
 using namespace std;
 
 class AppReceiptException: public exception {
+public:
     const char * what () const throw();
 };
 
