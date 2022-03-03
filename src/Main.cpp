@@ -11,6 +11,10 @@
 
 using namespace std;
 
+/**
+ * The unexpected handler function is a function automatically called when a function throws an exception that
+ * is not in its dynamic-exception-specification (i.e., in its throw specifier).
+ */
 void myUnexpected () {
     std::cerr << "unexpected handler called\n";
     throw;
