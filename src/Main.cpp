@@ -11,7 +11,14 @@
 
 using namespace std;
 
+void myUnexpected () {
+    std::cerr << "unexpected handler called\n";
+    throw;
+}
+
 int main() {
+
+    set_unexpected (myUnexpected);
 
     try {
         cout << "Welcome to the UNA! (VIRTUAL)\n" << std::endl;
@@ -41,12 +48,12 @@ int main() {
 
         productManager.purchase(appReceiptSender); // Error if name is empty
         //productManager.exampleBadCast(); // Example of error bad cast
-        //productManager.exampleBadException(); // Example of bad exception
+        productManager.exampleBadException(); // Example of bad exception
         //productManager.exampleLengthError(); // Example of length error
 
     } catch(const bad_cast& bc) {
         cerr << "bad_cast caught: " << bc.what() << '\n' << std::endl;
-    }  catch (bad_exception be) {
+    }  catch (const bad_exception& be) {
         cerr << "bad_exception caught: " << be.what() << '\n' << std::endl;
     } catch (const length_error& le) {
         cerr << "length_error caught: " << le.what() << '\n' << std::endl;
